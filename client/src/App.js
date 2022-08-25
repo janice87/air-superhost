@@ -28,11 +28,39 @@ function App() {
   const [errors, setErrors] = useState(false)
   const [currentRental, setCurrentRental] = useState({})
 
+  useEffect(() => {
+    fetch(`/rentals`)
+    .then(res => {
+      if(res.ok) {
+        res.json().then(rentalArray => setRentals(rentalArray))
+      } else {
+        res.json().then(data => setErrors(data.errors))
+      }
+    })
+
+    fetch('/me')
+    .then(res => {
+      if(res.ok) {
+        res.json().then(loggedinUser => setCurrentUser(loggedinUser))
+      } else {
+        res.json().then(data => {          
+          setErrors(data.errors)
+        })
+      }
+    })   
+    }, [])
+ 
+  if(errors) return <h2>{errors}</h2>
+
   return (
     <div>
       <ThemeProvider theme={theme}> 
-     
-      </ThemeProvider>
+      <Navbar currentUser={currentUser} updateCurrentUser={updateCurrentUser} />  
+      <Switch>  
+
+
+     </Switch> 
+     </ThemeProvider>
     </div>
   );
 }
