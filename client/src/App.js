@@ -59,6 +59,27 @@ function App() {
  
   if(errors) return <h2>{errors}</h2>
 
+  const handleAddRental = (newRental) => {
+    const updatedRentals = [...rentals, newRental]  
+    const sortedRentals = updatedRentals.sort(function (a,b) {
+      return a.location.toLowerCase().localeCompare(b.location.toLowerCase())
+    })    
+    setRentals(sortedRentals)
+  }
+
+  const handleDeleteRental = (id) => {
+    const updatedRentals = rentals.filter(rental => rental.id !== id)
+    setRentals(updatedRentals)
+  }
+
+  const handleEditRental = (editedRental) => {
+    const updatedRentals = rentals.map(rental => 
+      rental.id === editedRental.id ? editedRental : rental)
+      const sortedRentals = updatedRentals.sort(function (a,b) {
+        return a.location.toLowerCase().localeCompare(b.location.toLowerCase())
+      })    
+    setRentals(sortedRentals)
+  }
 
   const updateCurrentUser = (user) => {       
     setCurrentUser(user)
@@ -67,6 +88,8 @@ function App() {
   const updateCurrentRental = (rentalObj) => {
     setCurrentRental(rentalObj)
   }
+
+  const userFilteredRentals = rentals.filter(rental => rental.user_id === currentUser.id)
 
   return (
     <div>
