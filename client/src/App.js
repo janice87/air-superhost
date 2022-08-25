@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route } from 'react-router-dom'
+import {useState, useEffect} from 'react'
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#e57373'
+    },
+    secondary: {
+      main: '#FFFFFF'
+    }  
+  },
+  typography: {
+    fontFamily: [
+      'Libre Franklin',
+      'Karla',
+      'Playfair Display',       
+      'Noto Serif HK'
+    ].join(',')
+  }
+});
 
 function App() {
+  const [rentals, setRentals] = useState([])
+  const [currentUser, setCurrentUser] = useState(false)
+  const [errors, setErrors] = useState(false)
+  const [currentRental, setCurrentRental] = useState({})
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ThemeProvider theme={theme}> 
+     
+      </ThemeProvider>
     </div>
   );
 }
