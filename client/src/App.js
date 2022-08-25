@@ -1,8 +1,13 @@
 import { Switch, Route } from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import Navbar from './components/Navbar'
-
-
+import RentalsPage from './components/RentalsPage'
+import RentalsDetail from './components/RentalsDetail'
+import NewRentalsForm from './components/NewRentalsForm'
+import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm'
+import UserPage from './components/UserPage'
+import UserRentalEdit from './components/UserRentalEdit'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -53,6 +58,15 @@ function App() {
     }, [])
  
   if(errors) return <h2>{errors}</h2>
+
+
+  const updateCurrentUser = (user) => {       
+    setCurrentUser(user)
+  }
+
+  const updateCurrentRental = (rentalObj) => {
+    setCurrentRental(rentalObj)
+  }
 
   return (
     <div>
