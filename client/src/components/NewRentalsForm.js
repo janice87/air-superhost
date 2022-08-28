@@ -31,7 +31,7 @@ import { Box, Container, Button, Typography, TextField, TextareaAutosize } from 
                 res.json().then(newRental => onAddRental(newRental))
                 history.push(`/rentals`)     
             } else {
-                res.json().then(data => {                    
+                res.json().then(data => {                                                             
                     setErrors(data.errors)
                 })                
             }
@@ -129,7 +129,7 @@ import { Box, Container, Button, Typography, TextField, TextareaAutosize } from 
                   />          
             <br/>
             <Button type="submit" variant="outlined">Submit</Button>
-             {errors ? errors.map(error => <li key={error}>{error}</li>) : null }
+             {errors ? errors.map(error => <li key={error}>{error}</li>) : null }            
             </form>         
           </Box>
         </Container>

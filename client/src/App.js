@@ -37,28 +37,25 @@ function App() {
 
   useEffect(() => {
     fetch(`/rentals`)
-    .then(res => {
+    .then(res => {      
       if(res.ok) {
-        res.json().then(rentalArray => setRentals(rentalArray))
+        res.json().then(rentalArray => setRentals(rentalArray))        
       } else {
-        res.json().then(data => setErrors(data.errors))
+        res.json().then(data => {          
+          setErrors(data.error)
+        })      
       }
     })
 
     fetch('/me')
     .then(res => {
       if(res.ok) {
-        res.json().then(loggedinUser => setCurrentUser(loggedinUser))
-      } else {
-        res.json().then(data => {          
-          setErrors(data.errors)
-        })
+        res.json().then(loggedinUser => setCurrentUser(loggedinUser))     
       }
-    })   
+    }) 
+       
     }, [])
- 
-  if(errors) return <h2>{errors}</h2>
-
+    
   const handleAddRental = (newRental) => {
     const updatedRentals = [...rentals, newRental]  
     const sortedRentals = updatedRentals.sort(function (a,b) {
@@ -90,19 +87,20 @@ function App() {
   }
 
   const userFilteredRentals = rentals.filter(rental => rental.user_id === currentUser.id)
-
+ 
   return (
     <div>
       <ThemeProvider theme={theme}> 
-      <Navbar currentUser={currentUser} updateCurrentUser={updateCurrentUser} />  
+      <Navbar currentUser={currentUser} updateCurrentUser={updateCurrentUser} />    
+      {errors ? <li key={errors}>Rentals {errors}</li>: null}   
       <Switch>  
         <Route exact path="/rentals"><RentalsPage rentals={rentals} updateCurrentRental={updateCurrentRental} /></Route> 
         <Route exact path="/rentals/new"><NewRentalsForm onAddRental={handleAddRental} currentUser={currentUser} /></Route> 
         <Route exact path="/rentals/:id/edit"><UserRentalEdit currentUser={currentUser} onUpdateRental={handleEditRental} /></Route>
         <Route exact path="/rentals/:id"><RentalsDetail rentalObj={currentRental} /></Route> 
-        <Route exact path="/users/:id"><UserPage currentUser={currentUser} rentals={userFilteredRentals} deleteRental={handleDeleteRental} /></Route>
+        <Route exact path="/users/:id"><UserPage currentUser={currentUser} rentals={userFilteredRentals} deleteRental={handleDeleteRental} /></Route>    
         <Route exact path="/login"><LoginForm updateCurrentUser={updateCurrentUser} /></Route>     
-        <Route exact path="/"><SignupForm updateCurrentUser={updateCurrentUser} /></Route> 
+        <Route exact path="/"><SignupForm updateCurrentUser={updateCurrentUser} /></Route>       
      </Switch> 
      </ThemeProvider>
     </div>

@@ -5,7 +5,7 @@ import { Container, Box, Typography, Grid, TextField, Button} from '@mui/materia
 const LoginForm = ({updateCurrentUser}) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState(false)
   const history = useHistory()
 
   const handleSubmit = (e) => {
@@ -27,7 +27,9 @@ const LoginForm = ({updateCurrentUser}) => {
             history.push(`/rentals`)
         })
       } else {
-        res.json().then(data => setErrors(data.errors))
+        res.json().then(data => {
+          setErrors(data.error)
+        })
       }
     })
   }
@@ -70,8 +72,8 @@ const LoginForm = ({updateCurrentUser}) => {
               LOGIN
             </Button>     
            </Box>
-          </form>     
-          {errors ? errors.map(error => <li key={error}>{error}</li>) : null }       
+          </form>    
+         {errors ? <li key={errors}>{errors}</li>: null} 
         </Grid>
         </Grid>
         </Grid>  

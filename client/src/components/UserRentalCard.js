@@ -40,7 +40,8 @@ const UserRentalCard = ({rental, deleteRental, currentUser}) => {
           boxShadow={1}
           style={{ marginBottom: "2em" }}
         >  
-        {errors ? errors.map(error => <li key={error}>{error}</li>) : null }
+        {/* {errors ? errors.map(error => <li key={error}>{error}</li>) : null }       */}
+        {errors ? <li key={errors}>{errors}</li>: null}   
       <Card sx={{ maxWidth: 400 }}>
         <CardMedia
           component="img"
