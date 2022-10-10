@@ -4,6 +4,9 @@
 ![appDemo](client/demo/superhost.gif)
 
 
+Demo Link: https://www.loom.com/share/0536aadb2fea46b6bbf1db92586e1d3a
+
+
 ## Overview
 Phase 4 project for Flatiron School's software engineering program. This is a full stack application built with React on the front end and Rails on the backend. The three models used on the backend are users, guests and rentals. Bcrypt was used for user authentication and material UI was used for styling. Images used are from Architectural Digest.                                                                                                                               
 
