@@ -1,10 +1,9 @@
 # Phase 4 Project - Super Host app
 
 ## Demo
-![appDemo](client/demo/superhost.gif)
+<!-- ![appDemo](client/demo/superhost.gif) -->
 
-
-Demo Link: https://www.loom.com/share/0536aadb2fea46b6bbf1db92586e1d3a
+https://www.loom.com/share/0536aadb2fea46b6bbf1db92586e1d3a
 
 
 ## Overview
